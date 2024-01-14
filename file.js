@@ -18,3 +18,6 @@ fs.readFile('./contact.txt','utf-8',(err,restult)=>{
         console.log(result);
     }
 });
+
+// fs.appendFileSync("./test.txt",new Date().getDate().toLocaleString());
+fs.appendFileSync("./test.txt",' hey there\n');
