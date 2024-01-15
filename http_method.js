@@ -11,5 +11,6 @@
 //when you want to upload a photo or something like that you want to put on your server
  
 //PATCH
+//when you have to edit and update some date in the database
 
 // DELETE     
