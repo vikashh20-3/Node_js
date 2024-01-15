@@ -14,3 +14,4 @@
 //when you have to edit and update some date in the database
 
 // DELETE     
+//when you have to delete from the database
