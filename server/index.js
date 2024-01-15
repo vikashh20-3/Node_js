@@ -7,9 +7,9 @@ const { error } = require("console");
 const myServer = http.createServer((request, response) => {
     if (request.url === '/favicon.ico') return response.end();
     // console.log('new req rec');
-    // console.log(request.headers)
+    // console.log(request.headers);
     const log = `${Date.now()}  ${request.url}: New Request Recieved\n`;
-    const myUrl = url.parse(request.url,true);
+    const myUrl = url.parse(request.url, true);
     //here true make seperation of different query parameters
     console.log(myUrl);
     fs.appendFile('log.txt', log, (error, data) => {
@@ -20,7 +20,7 @@ const myServer = http.createServer((request, response) => {
                 response.end("homepage");
                 break;
             case "/about":
-                const username=myUrl.query.myname
+                const username = myUrl.query.myname
                 response.end(`hi ${username}`);
                 break;
             default:
