@@ -2,11 +2,13 @@ const http = require("http");
 const fs = require('fs');
 const { error } = require("console");
 const myServer = http.createServer((request, response) => {
+    if (request.url === '/favicon.ico') return response.end();
     // console.log('new req rec');
     // console.log(request.headers)
     const log = `${Date.now()}  ${request.url}: New Request Recieved\n`;
     fs.appendFile('log.txt', log, (error, data) => {
         switch (request.url) {
+
             case "/":
                 response.end("homepage");
                 break;
