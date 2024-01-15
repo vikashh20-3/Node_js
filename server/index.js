@@ -8,7 +8,7 @@ const myServer = http.createServer((request, response) => {
     if (request.url === '/favicon.ico') return response.end();
     // console.log('new req rec');
     // console.log(request.headers);
-    const log = `${Date.now()}  ${request.url}: New Request Recieved\n`;
+    const log = `${Date.now()} ${request.method} ${request.url}: New Request Recieved\n`;
     const myUrl = url.parse(request.url, true);
     //here true make seperation of different query parameters
     console.log(myUrl);

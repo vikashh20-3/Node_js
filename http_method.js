@@ -7,4 +7,9 @@
 //when you want to send and mutate some data in server 
 
 
+//PUT 
+//when you want to upload a photo or something like that you want to put on your server
+ 
+//PATCH
 
+// DELETE     
