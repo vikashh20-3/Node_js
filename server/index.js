@@ -15,7 +15,6 @@ const myServer = http.createServer((request, response) => {
     fs.appendFile('log.txt', log, (error, data) => {
         // switch (request.url) {
         switch (myUrl.pathname) {
-
             case "/":
                 response.end("homepage");
                 break;
