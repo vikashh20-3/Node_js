@@ -10,9 +10,22 @@ app.get('/', (request, response) => {
     return response.send('hello from homepage');
 });
 
+// here get is method
 app.get('/about', (request, response) => {
     return response.send("hello from about page")
 });
+
+
+// here we can direct access to our query paramter of our link 
+app.get('/user', (request, response) => {
+    return response.send("hello from user " + " hey " + request.query.name + " age " + request.query.age);
+});
+
+
+
+app.post('/form', (request, respone) => {
+    return response.send("about page with post method request")
+})
 
 const { error } = require("console");
 // const myServer = http.createServer((request, response) => {
@@ -84,4 +97,6 @@ function serverHandler(request, response) {
 
 // if we are using express app
 const myServer = http.createServer(app);
+
+// 
 myServer.listen(9000, () => console.log('Server Started'));
