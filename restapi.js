@@ -31,6 +31,8 @@ app.get('/users', (request, response) => {
     <ul>${users.map((user) => `<li> ${user.first_name}</li>`).join("")}</ul>`
     response.send(html);
 })
+
+
 app.get('/api/users', (request, response) => {
     response.json(users);
 })
@@ -39,7 +41,50 @@ app.get('/api/users/:id', (request, response) => {
     const id = Number(request.params.id);
     const user = users.find(user => user.id === id)
     return response.json(user);
+});
+
+app.post('/api/users', (request, response) => {
+    // TODO : create new user
+
+    response.json({ status: 'pending' });
+});
+
+app.patch('/api/users/:id', (request, response) => {
+
+    // TODO : Edit the user with id 
+
+    response.json({ status: 'pending' });
+});
+
+app.delete('/api/users/:id', (request, response) => {
+
+    // TODO : Delete the user with id 
+
+    response.json({ status: 'pending' });
 })
+
+// HERE ABOVE WE ARE WRIITING ROUTES EVERYTIME 
+
+
+// WE CAN ACHIEVE THIS BY GROUPING METHOD 
+
+app.route("/api/users/:id").get((request, response) => {
+    const id = Number(request.params.id);
+    const user = users.find((user) => user.id === id);
+    return response.json(user);
+})
+    .put((request, response) => {
+        //Edit user with id 
+        return response.json({ status: "pending" })
+    })
+    .delete((request, response) => {
+        //delete this user with id 
+        return response.json({ status: "pending" });
+
+    });
+
+
+
 
 
 
