@@ -1,7 +1,18 @@
 const http = require("http");
 const fs = require('fs');
 const url = require("url");
+const express = require("express");
 
+
+const app = express();
+
+app.get('/', (request, response) => {
+    return response.send('hello from homepage');
+});
+
+app.get('/about', (request, response) => {
+    return response.send("hello from about page")
+});
 
 const { error } = require("console");
 // const myServer = http.createServer((request, response) => {
@@ -40,6 +51,7 @@ function serverHandler(request, response) {
     const myUrl = url.parse(request.url, true);
     //here true make seperation of different query parameters
     console.log(myUrl);
+    console.log(`url data : ${JSON.stringify(myUrl, null, 2)}`);
     fs.appendFile('log.txt', log, (error, data) => {
         // switch (request.url) {
         // switch (request.url) {
@@ -52,11 +64,11 @@ function serverHandler(request, response) {
                 response.end(`hi ${username}`);
                 break;
 
-              case "/signup":
-                if(request.method==='GET') response.end("this is signup form");
-                else if (request.method==='POST'){
+            case "/signup":
+                if (request.method === 'GET') response.end("this is signup form");
+                else if (request.method === 'POST') {
                     response.end("success");
-                }  
+                }
             default:
                 response.end("404 Page not found");
         }
@@ -65,5 +77,11 @@ function serverHandler(request, response) {
     })
 };
 
-const myServer = http.createServer((request, response) => { serverHandler (request,response)})
+
+// if we are using  function serverhandler
+// const myServer = http.createServer(serverHandler);
+
+
+// if we are using express app
+const myServer = http.createServer(app);
 myServer.listen(9000, () => console.log('Server Started'));
