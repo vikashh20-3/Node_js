@@ -1,0 +1,9 @@
+//  works on server client architecture 
+
+//  always respect all https method 
+//  get post put patch delete
+
+//   GET/USER WE  READ USER DATE AND RETURN THE DATA
+//   POST/USER   HANDLE NEW USER CREATION 
+//   PATCH/USER  UPDATE THE USER 
+//   POS/UPDATE USER  USER UPDATE
