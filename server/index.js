@@ -98,5 +98,8 @@ function serverHandler(request, response) {
 // if we are using express app
 const myServer = http.createServer(app);
 
-// 
-myServer.listen(9000, () => console.log('Server Started'));
+// create server using express
+app.listen(8000,()=> console.log("Server started"));
+
+// creating of server in node js 
+// myServer.listen(9000, () => console.log('Server Started'));
