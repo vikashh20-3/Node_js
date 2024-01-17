@@ -1,9 +1,16 @@
 //  works on server client architecture 
 
 //  always respect all https method 
-//  get post put patch delete
+//  GET PUT PATCH POST DELETE
 
 //   GET/USER WE  READ USER DATE AND RETURN THE DATA
 //   POST/USER   HANDLE NEW USER CREATION 
 //   PATCH/USER  UPDATE THE USER 
 //   POS/UPDATE USER  USER UPDATE
+
+
+//response.json () // to send the json data like api and 
+
+// response.send() // to send the data 
+
+// response.render() // to render the html pages 
