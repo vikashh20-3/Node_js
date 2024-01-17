@@ -6,6 +6,7 @@ const express = require("express");
 
 const app = express();
 
+
 app.get('/', (request, response) => {
     return response.send('hello from homepage');
 });
@@ -99,7 +100,7 @@ function serverHandler(request, response) {
 const myServer = http.createServer(app);
 
 // create server using express
-app.listen(8000,()=> console.log("Server started"));
+app.listen(8000, () => console.log("Server started"));
 
 // creating of server in node js 
 // myServer.listen(9000, () => console.log('Server Started'));

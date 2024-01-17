@@ -1,8 +1,12 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
+const fs = require("fs");
 
 
 const app = express();
+
+// middleware  or used as a plugin 
+app.use(express.urlencoded({ extended: false }));
 
 
 // we are designing rest api in json data 
@@ -46,7 +50,12 @@ app.get('/api/users/:id', (request, response) => {
 app.post('/api/users', (request, response) => {
     // TODO : create new user
 
-    response.json({ status: 'pending' });
+    const body = request.body;
+    console.log(body);
+    users.push({ ...body, id: users.length + 1 });
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+        return response.json({ status: "success", id: users.length + 1 })
+    })
 });
 
 app.patch('/api/users/:id', (request, response) => {
@@ -68,20 +77,20 @@ app.delete('/api/users/:id', (request, response) => {
 
 // WE CAN ACHIEVE THIS BY GROUPING METHOD 
 
-app.route("/api/users/:id").get((request, response) => {
-    const id = Number(request.params.id);
-    const user = users.find((user) => user.id === id);
-    return response.json(user);
-})
-    .put((request, response) => {
-        //Edit user with id 
-        return response.json({ status: "pending" })
-    })
-    .delete((request, response) => {
-        //delete this user with id 
-        return response.json({ status: "pending" });
+// app.route("/api/users/:id").get((request, response) => {
+//     const id = Number(request.params.id);
+//     const user = users.find((user) => user.id === id);
+//     return response.json(user);
+// })
+//     .put((request, response) => {
+//         //Edit user with id 
+//         return response.json({ status: "pending" })
+//     })
+//     .delete((request, response) => {
+//         //delete this user with id 
+//         return response.json({ status: "pending" });
 
-    });
+//     });
 
 
 
