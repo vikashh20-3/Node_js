@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const app = express();
 
-// middleware  or used as a plugin 
+// middleware  or used as a 
 app.use(express.urlencoded({ extended: false }));
 
 
@@ -54,7 +54,7 @@ app.post('/api/users', (request, response) => {
     console.log(body);
     users.push({ ...body, id: users.length + 1 });
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-        return response.json({ status: "success", id: users.length + 1 })
+        return response.json({ status: "success", id: users.length })
     })
 });
 
