@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    console.log('hello from middleware 2')
+    console.log('hello from next middleware ')
     return res.end('hey')
     // end will stopt all the execution here it will not go downside 
 })
