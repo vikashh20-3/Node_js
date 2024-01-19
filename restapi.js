@@ -10,17 +10,17 @@ app.use(express.urlencoded({ extended: false }));
 
 //creating own middleware 
 app.use((req, res, next) => {
-    req.myUserName="vikashh.tech"
+    req.myUserName = "vikashh.tech"
     // here next means that after doing this middleware function rutn the next middleware function
-    console.log('hello from middleware 1',req.myUserName);
+    console.log('hello from middleware 1', req.myUserName);
     // return res.json({ msg: 'hello from middleware 1' })
-   
+
     next();
     // here next function will automatically execute next function
 });
 
 app.use((req, res, next) => {
-    console.log('hello from next middleware ',req.myUserName)
+    console.log('hello from next middleware ', req.myUserName)
     // return res.end('hey')
     // end will stopt all the execution here it will not go downside 
     next();
@@ -59,7 +59,11 @@ app.get('/users', (request, response) => {
 
 
 app.get('/api/users', (request, response) => {
-    console.log("i'm in the get request ",request.myUserName);
+    console.log("i'm in the get request ", request.myUserName);
+    // this header is response header and the keyname (myname) has a value of (vikash) 
+    response.setHeader('myName', "vikash");
+    // this will show the request header
+    console.log(request.headers);
     response.json(users);
 })
 
