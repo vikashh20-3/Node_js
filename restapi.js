@@ -64,6 +64,10 @@ app.get('/api/users', (request, response) => {
     response.setHeader('myName', "vikash");
     // this will show the request header
     console.log(request.headers);
+
+    // custom header
+    response.setHeader('X-myName', "vikash");
+    // always use X in front of key name it's a good practise
     response.json(users);
 })
 
