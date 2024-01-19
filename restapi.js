@@ -8,6 +8,21 @@ const app = express();
 // middleware  or used as a 
 app.use(express.urlencoded({ extended: false }));
 
+//creating own middleware 
+app.use((req, res, next) => {
+    // here next means that after doing this middleware function rutn the next middleware function
+    console.log('hello from middleware 1');
+    // return res.json({ msg: 'hello from middleware 1' })
+    next();
+    // here next function will automatically execute next function
+});
+
+app.use((req, res, next) => {
+    console.log('hello from middleware 2')
+    return res.end('hey')
+    // end will stopt all the execution here it will not go downside 
+})
+
 
 // we are designing rest api in json data 
 
@@ -32,7 +47,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get('/users', (request, response) => {
     const html = `
-    <ul>${users.map((user) => `<li> ${user.first_name}</li>`).join("")}</ul>`
+    <ul>${users.map((user) =>
+        `<li> ${user.first_name}
+         </li>`).join("")}
+         </ul>`
     response.send(html);
 })
 
