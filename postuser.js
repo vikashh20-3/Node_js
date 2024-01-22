@@ -58,17 +58,17 @@ app.post('/api/users', async (request, response) => {
     const body = request.body;
 
     // we will check that everything is available
-    // if (
-    //     !body ||
-    //     !body.first_name ||
-    //     !body.last_name ||
-    //     !body.email ||
-    //     !body.gender ||
-    //     !body.job_title
-    // ) {
-    //     console.log()
-    //     return response.status(400).json({ msg: "All fields are required..." })
-    // }
+    if (
+        !body ||
+        !body.first_name ||
+        !body.last_name ||
+        !body.email ||
+        !body.gender ||
+        !body.job_title
+    ) {
+        console.log()
+        return response.status(400).json({ msg: "All fields are required..." })
+    }
 
     try {
         const user = await User.create({

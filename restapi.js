@@ -86,13 +86,22 @@ app.use((req, res, next) => {
 
 // ROUTES 
 
-app.get('/users', (request, response) => {
+app.get('/users', async (request, response) => {
+
+    // to get the user from the mongodb 
+
+    const allDbUsers = await User.find({});
     const html = `
-    <ul>${users.map((user) =>
-        `<li> ${user.first_name}
+    <ul>${allDbUsers.map((user) =>
+        `<li> ${user.firstname}--${user.email}
          </li>`).join("")}
          </ul>`
     response.send(html);
+    // <ul>${users.map((user) =>
+    //     `<li> ${user.first_name}
+    //      </li>`).join("")}
+    //      </ul>`
+    // response.send(html);
 })
 
 
@@ -141,7 +150,8 @@ app.post('/api/users', async (request, response) => {
             jobtitle: body.job_title,
 
         });
-        return response.sendStatus(201).json({ msg: "succes to create a user", user });
+        console.log("Created user:", user);
+        return response.status(201).json({ msg: "succes to create a user", user });
     }
     catch (err) {
         console.error(err);
