@@ -5,6 +5,13 @@ const users = require('./MOCK_DATA.json')
 const app = express();
 
 
+// middleware  or used as a 
+app.use(express.urlencoded({ extended: false }));
+
+
+
+
+
 //connection
 mongoose.connect('mongodb://127.0.0.1:27017/demo-app-1')
     .then(() => console.log("mongo db connected"))
@@ -48,16 +55,18 @@ app.post('/api/users', async (request, response) => {
     const body = request.body;
 
     // we will check that everything is available
-    if (
-        !body ||
-        !body.first_name ||
-        !body.last_name ||
-        !body.email ||
-        !body.gender ||
-        !body.job_title
-    ) {
-        return response.status(400).json({ msg: "All fields are required..." })
-    }
+    // if (
+    //     !body ||
+    //     !body.first_name ||
+    //     !body.last_name ||
+    //     !body.email ||
+    //     !body.gender ||
+    //     !body.job_title
+    // ) {
+    //     console.log()
+    //     return response.status(400).json({ msg: "All fields are required..." })
+    // }
+    // return response.status(400).json({ msg: "All fields are required..." })
 
     try {
         const user = await User.create({
@@ -68,6 +77,7 @@ app.post('/api/users', async (request, response) => {
             jobtitle: body.job_title,
 
         });
+        console.log(user)
         return response.sendStatus(201).json({ msg: "succes to create a user", user });
     }
     catch (err) {
