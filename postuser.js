@@ -66,7 +66,6 @@ app.post('/api/users', async (request, response) => {
     //     console.log()
     //     return response.status(400).json({ msg: "All fields are required..." })
     // }
-    // return response.status(400).json({ msg: "All fields are required..." })
 
     try {
         const user = await User.create({
@@ -86,7 +85,6 @@ app.post('/api/users', async (request, response) => {
 
     }
 });
-
 
 const PORT = 8000;
 
