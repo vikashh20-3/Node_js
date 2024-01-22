@@ -1,7 +1,7 @@
 HTTP response status code 
 
 informational response (100-199)
- succesful response (2000-299)
+ succesful response (200-299)
  redirecting messsages (300-399)
  client error response (400-499)
  server error response (500 - 599 )

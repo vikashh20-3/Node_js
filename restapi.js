@@ -1,7 +1,7 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
 const fs = require("fs");
-const mongoose =require("mongoose");    
+const mongoose = require("mongoose");
 
 
 const app = express();
@@ -17,18 +17,18 @@ mongoose.connect('mongodb://127.0.0.1:27017/demo-app-1')
 
 // Schema of mongoose 
 const userSchema = new mongoose.Schema({
-    fistname: {
+    firstname: {
         type: String,
         required: true,
     },
-    lastName: {
+    lastname: {
         type: String,
     },
     email: {
         type: String,
         require: true,
         // this unique will check that entered email should be unique not preused
-        unique: true,
+        // unique: true,
 
     },
     jobtitle: {
@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-    },
+    }
 
 
 });
@@ -99,12 +99,12 @@ app.get('/users', (request, response) => {
 app.get('/api/users', (request, response) => {
     console.log("i'm in the get request ", request.myUserName);
     // this header is response header and the keyname (myname) has a value of (vikash) 
-    response.setHeader('myName', "vikash");
+    // response.setHeader('myName', "vikash");
     // this will show the request header
     console.log(request.headers);
 
     // custom header
-    response.setHeader('X-myName', "vikash");
+    // response.setHeader('X-myName', "vikash");
     // always use X in front of key name it's a good practise
     response.json(users);
 })
@@ -115,31 +115,43 @@ app.get('/api/users/:id', (request, response) => {
     return response.json(user);
 });
 
-app.post('/api/users',async (request, response) => {
+app.post('/api/users', async (request, response) => {
     // TODO : create new user
 
     const body = request.body;
 
     // we will check that everything is available
-    if(
+    if (
         !body ||
-        !body.first_name||
-        !body.last_lame ||
+        !body.first_name ||
+        !body.last_name ||
         !body.email ||
         !body.gender ||
         !body.job_title
-    )
-    {
-        return response.status(400).json({msg:"All fields are required..."})
+    ) {
+        return response.status(400).json({ msg: "All fields are required..." })
     }
 
-    await  
+    const user = await User.create({
+        firstname: body.first_name,
+        lastname: body.last_name,
+        email: body.email,
+        gender: body.gender,
+        jobtitle: body.job_title,
 
-    console.log(body);
-    users.push({ ...body, id: users.length + 1 });
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-        return response.json({ status: "success", id: users.length })
-    })
+    });
+
+
+    // console.log(body);
+    console.log(user);
+
+    // return response.status(201).json({ msg: "success to create a user" });
+
+    return response.sendStatus(201).json({ msg: "succes to create a user" });
+    // users.push({ ...body, id: users.length + 1 });
+    // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    //     return response.json({ status: "success", id: users.length })
+    // })
 });
 
 app.patch('/api/users/:id', (request, response) => {
