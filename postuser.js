@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 //connection
-mongoose.connect('mongodb://127.0.0.1:27017/demo-app-1')
+mongoose.connect('mongodb://127.0.0.1:27017/demo-app-2')
     .then(() => console.log("mongo db connected"))
     .catch(err => console.log("mongo error", err))
 
@@ -77,7 +77,7 @@ app.post('/api/users', async (request, response) => {
 
         });
         console.log(user)
-        return response.sendStatus(201).json({ msg: "succes to create a user", user });
+        return response.send(201).json({ msg: "succes to create a user", user });
     }
     catch (err) {
         console.error(err);
@@ -86,6 +86,6 @@ app.post('/api/users', async (request, response) => {
     }
 });
 
-const PORT = 8000;
+const PORT = 9000;
 
 app.listen(PORT, () => console.log(`Server started at : ${PORT}`));

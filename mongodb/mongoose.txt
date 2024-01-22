@@ -9,3 +9,6 @@ npm i mongoose
 
  // to see all the collections
  show collections
+
+ // to see all the data of the collections
+  db.{collection name}.find({})
