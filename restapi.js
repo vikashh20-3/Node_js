@@ -132,22 +132,28 @@ app.post('/api/users', async (request, response) => {
         return response.status(400).json({ msg: "All fields are required..." })
     }
 
-    const user = await User.create({
-        firstname: body.first_name,
-        lastname: body.last_name,
-        email: body.email,
-        gender: body.gender,
-        jobtitle: body.job_title,
+    try {
+        const user = await User.create({
+            firstname: body.first_name,
+            lastname: body.last_name,
+            email: body.email,
+            gender: body.gender,
+            jobtitle: body.job_title,
 
-    });
+        });
+        return response.sendStatus(201).json({ msg: "succes to create a user", user });
+    }
+    catch (err) {
+        console.error(error);
+        return response.status(500).json({ msg: "Internal Server Error" });
 
+    }
 
     // console.log(body);
-    console.log(user);
+    console.log("user ", user);
 
     // return response.status(201).json({ msg: "success to create a user" });
 
-    return response.sendStatus(201).json({ msg: "succes to create a user" });
     // users.push({ ...body, id: users.length + 1 });
     // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
     //     return response.json({ status: "success", id: users.length })
