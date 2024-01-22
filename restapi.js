@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        require: true,
+        // require: true,
         // this unique will check that entered email should be unique not preused
         // unique: true,
 
@@ -144,13 +144,13 @@ app.post('/api/users', async (request, response) => {
         return response.sendStatus(201).json({ msg: "succes to create a user", user });
     }
     catch (err) {
-        console.error(error);
+        console.error(err);
         return response.status(500).json({ msg: "Internal Server Error" });
 
     }
 
     // console.log(body);
-    console.log("user ", user);
+    // console.log("user ", user);
 
     // return response.status(201).json({ msg: "success to create a user" });
 
