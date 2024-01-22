@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     }
 
 
-});
+}, { timestamp: true });
 const User = mongoose.model("user", userSchema);
 
 
@@ -105,7 +105,8 @@ app.get('/users', async (request, response) => {
 })
 
 
-app.get('/api/users', (request, response) => {
+app.get('/api/users', async (request, response) => {
+    const allDbUsers = await User.find({});
     console.log("i'm in the get request ", request.myUserName);
     // this header is response header and the keyname (myname) has a value of (vikash) 
     // response.setHeader('myName', "vikash");
@@ -115,7 +116,8 @@ app.get('/api/users', (request, response) => {
     // custom header
     // response.setHeader('X-myName', "vikash");
     // always use X in front of key name it's a good practise
-    response.json(users);
+    // response.json(users);
+    response.json(allDbUsers);
 })
 
 app.get('/api/users/:id', (request, response) => {
