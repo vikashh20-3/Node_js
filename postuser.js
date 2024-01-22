@@ -44,7 +44,10 @@ const userSchema = new mongoose.Schema({
     }
 
 
-});
+},
+    { timestamps: true }
+    // it will shows the created time and updated time to our data 
+);
 const User = mongoose.model("user", userSchema);
 
 
