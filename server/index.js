@@ -9,6 +9,33 @@ const mongoose = require("mongoose");
 const app = express();
 
 
+
+// Schema of mongoose 
+const userSchema = new mongoose.Schema({
+    fistname: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+    },
+    email: {
+        type: string,
+        require: true,
+        // this unique will check that entered email should be unique not preused
+        unique: true,
+
+    },
+    jobtitle: {
+        type: String,
+    },
+    gender: {
+        type: String,
+    },
+
+
+})
+
 app.get('/', (request, response) => {
     return response.send('hello from homepage');
 });
