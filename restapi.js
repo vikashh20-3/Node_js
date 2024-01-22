@@ -115,10 +115,26 @@ app.get('/api/users/:id', (request, response) => {
     return response.json(user);
 });
 
-app.post('/api/users', (request, response) => {
+app.post('/api/users',async (request, response) => {
     // TODO : create new user
 
     const body = request.body;
+
+    // we will check that everything is available
+    if(
+        !body ||
+        !body.first_name||
+        !body.last_lame ||
+        !body.email ||
+        !body.gender ||
+        !body.job_title
+    )
+    {
+        return response.status(400).json({msg:"All fields are required..."})
+    }
+
+    await  
+
     console.log(body);
     users.push({ ...body, id: users.length + 1 });
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
