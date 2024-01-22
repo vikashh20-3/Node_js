@@ -77,7 +77,10 @@ app.post('/api/users', async (request, response) => {
 
         });
         console.log(user)
-        return response.send(201).json({ msg: "succes to create a user", user });
+        // this code is not working
+        // return response.send(201).json({ msg: "succes to create a user", user });
+        // this is working
+        return response.status(201).json({ msg: "succes to create a user", user });
     }
     catch (err) {
         console.error(err);
