@@ -1,2 +1,11 @@
 to install mongo db 
 npm i mongoose
+
+// to see all the databases 
+ show dbs
+
+// to use specific database
+ use {databasename}
+
+ // to see all the collections
+ show collections

@@ -13,7 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/demo-app-1')
     .then(() => console.log("mongo db connected"))
     .catch(err => console.log("mongo error", err))
 
-const User = mongoose.model("user", userSchema);
+
 // Schema of mongoose 
 const userSchema = new mongoose.Schema({
     fistname: {
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     email: {
-        type: string,
+        type: String,
         require: true,
         // this unique will check that entered email should be unique not preused
         unique: true,
@@ -38,7 +38,8 @@ const userSchema = new mongoose.Schema({
     },
 
 
-})
+});
+const User = mongoose.model("user", userSchema);
 
 app.get('/', (request, response) => {
     return response.send('hello from homepage');
