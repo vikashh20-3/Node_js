@@ -120,9 +120,10 @@ app.get('/api/users', async (request, response) => {
     response.json(allDbUsers);
 })
 
-app.get('/api/users/:id', (request, response) => {
-    const id = Number(request.params.id);
-    const user = users.find(user => user.id === id)
+app.get('/api/users/:id', async (request, response) => {
+    const user = await User.findById(request.params.id);
+    // const id = Number(request.params.id);
+    // const user = users.find(user => user.id === id)
     return response.json(user);
 });
 
