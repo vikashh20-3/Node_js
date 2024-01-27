@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-    }
+    },
 
 
 }, { timestamp: true });
@@ -139,6 +139,7 @@ app.post('/api/users', async (request, response) => {
         !body.last_name ||
         !body.email ||
         !body.gender ||
+        
         !body.job_title
     ) {
         return response.status(400).json({ msg: "All fields are required..." })
@@ -151,6 +152,7 @@ app.post('/api/users', async (request, response) => {
             email: body.email,
             gender: body.gender,
             jobtitle: body.job_title,
+            id: body.id,
 
         });
         console.log("Created user:", user);
