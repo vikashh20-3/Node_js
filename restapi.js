@@ -182,11 +182,12 @@ app.patch('/api/users/:id', async (request, response) => {
     response.json({ status: 'Success' });
 });
 
-app.delete('/api/users/:id', (request, response) => {
+app.delete('/api/users/:id', async (request, response) => {
 
     // TODO : Delete the user with id 
+    await User.findByIdAndDelete(request.params.id);
 
-    response.json({ status: 'pending' });
+    response.json({ status: 'Success' });
 })
 
 // HERE ABOVE WE ARE WRIITING ROUTES EVERYTIME 
