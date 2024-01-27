@@ -139,7 +139,7 @@ app.post('/api/users', async (request, response) => {
         !body.last_name ||
         !body.email ||
         !body.gender ||
-        
+
         !body.job_title
     ) {
         return response.status(400).json({ msg: "All fields are required..." })
@@ -175,11 +175,11 @@ app.post('/api/users', async (request, response) => {
     // })
 });
 
-app.patch('/api/users/:id', (request, response) => {
+app.patch('/api/users/:id', async (request, response) => {
 
     // TODO : Edit the user with id 
-
-    response.json({ status: 'pending' });
+    await User.findByIdAndUpdate(request.params.id, { gender: "changed" });
+    response.json({ status: 'Success' });
 });
 
 app.delete('/api/users/:id', (request, response) => {
@@ -216,6 +216,6 @@ app.delete('/api/users/:id', (request, response) => {
 
 
 
-const PORT = 8000;
+const PORT = 7000;
 
 app.listen(PORT, () => console.log(`Server started at : ${PORT}`));
